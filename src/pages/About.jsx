@@ -7,14 +7,15 @@ import aboutImage from "../assets/images/home-about.jpeg";
 /* ================= VERTICAL STATEMENT ================= */
 
 const lines = [
-  "A frontend engineer.",
-  "A design-driven developer.",
-  "A motion-focused problem solver.",
-  "A builder of scalable UI systems.",
-  "A detail-obsessed interface crafter.",
-  "A systems thinker.",
-  "An insight gatherer.",
+  "A full-stack engineer.",
+  "A backend architect.",
+  "A REST & API specialist.",
+  "An AI-integrated problem solver.",
+  "A cloud & database builder.",
+  "A scalable systems designer.",
+  "A product-focused developer.",
 ];
+
 
 // duplicate first line for seamless loop
 const loopedLines = [...lines, lines[0]];
@@ -25,7 +26,7 @@ export function VerticalStatement() {
   return (
     <section className="my-40 text-center">
       <p className="font-serif text-4xl text-white/80">
-        I am a Web Developer.
+        I am a Full Stack Developer.
       </p>
 
       <p className="mt-4 mb-12 font-serif text-2xl text-white/50">
@@ -171,13 +172,15 @@ export default function About() {
         >
           <h1 className="text-8xl mb-8 font-serif">It’s Kyrie.</h1>
 
-          <p className="text-white/70 leading-relaxed max-w-xl text-2xl font-serif">
-            I’m a web developer focused on building clean,
-            thoughtful, and motion-aware digital experiences.
-            <br /><br />
-            I work at the intersection of design and development —
-            translating visual intent into reliable frontend systems.
-          </p>
+<p className="text-white/70 leading-relaxed max-w-xl text-2xl font-serif">
+  I’m a full-stack developer focused on building intelligent,
+  scalable, and data-driven web applications.
+  <br /><br />
+  I specialize in designing backend architectures,
+  developing REST APIs, integrating AI features,
+  and deploying secure cloud-based systems.
+</p>
+
 
           <motion.div className="mt-10">
             <button
