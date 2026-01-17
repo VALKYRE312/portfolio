@@ -214,29 +214,63 @@ export default function About() {
           </div>
         </div>
 
-        <div>
-          <h3 className="text-xs tracking-widest text-white/50 mb-6">
-            EXPERIENCE
-          </h3>
+<div>
+  <h3 className="text-xs tracking-widest text-white/50 mb-6">
+    EXPERIENCE
+  </h3>
 
-          <div className="space-y-6">
-            <div>
-              <p className="font-medium">2022 – Present</p>
-              <p className="text-white/60">
-                Frontend Developer — Freelance & Personal Projects
-              </p>
-            </div>
+  <div className="space-y-6">
+    
+    {/* Current Main Role */}
+    <div>
+      <p className="font-medium">2022 – Present</p>
+      <p className="text-white/60">
+        Full Stack Developer — Freelance & Personal Projects
+      </p>
+      <p className="text-white/40 text-sm mt-1">
+        Building scalable web apps, REST APIs, authentication systems, and cloud deployments.
+      </p>
+    </div>
 
-            <div>
-              <p className="font-medium">2021 – 2022</p>
-              <p className="text-white/60">
-                UI-focused Web Projects & Portfolio Work
-              </p>
-            </div>
+    {/* API + Backend Work */}
+    <div>
+      <p className="font-medium">2021 – 2022</p>
+      <p className="text-white/60">
+        Backend & API Development
+      </p>
+      <p className="text-white/40 text-sm mt-1">
+        Designed REST APIs with Node, Express, FastAPI, database integration, and AWS cloud hosting.
+      </p>
+    </div>
 
-            <div className="pt-4"> <h4 className="text-xs tracking-widest text-white/50 mb-2"> EDUCATION </h4> <p className="font-medium">2020 – Present</p> <p className="text-white/60"> Self-Taught Web Development & UI Engineering </p> </div>
-          </div>
-        </div>
+    {/* AI + Auth */}
+    <div>
+      <p className="font-medium">2023 – Present</p>
+      <p className="text-white/60">
+        AI Integration & Authentication Systems
+      </p>
+      <p className="text-white/40 text-sm mt-1">
+        Implementing AI-powered features, OAuth / JWT authentication, and secure user systems.
+      </p>
+    </div>
+
+    {/* EDUCATION */}
+    <div className="pt-6">
+      <h4 className="text-xs tracking-widest text-white/50 mb-2">
+        EDUCATION
+      </h4>
+      <p className="font-medium">2020 – 2024</p>
+      <p className="text-white/60">
+        Bachelor’s in Computer Science
+      </p>
+      <p className="text-white/40 text-sm mt-1">
+        Focused on software engineering, databases, and web technologies.
+      </p>
+    </div>
+
+  </div>
+</div>
+
       </section>
 
       {/* ================= HOBBIES ================= */}

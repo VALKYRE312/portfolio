@@ -36,31 +36,7 @@ export default function Home() {
     digital products.
   </motion.h1>
 <br></br><br></br>
-  {/* Arrow directly under last line */}
-  <motion.div
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: [0, 12, 0] }}
-    transition={{
-      opacity: { delay: 1, duration: 0.8 },
-      y: { repeat: Infinity, duration: 1.5, ease: "easeInOut" }
-    }}
-    className="mt-8"
-  >
-    <svg
-      width="40"
-      height="40"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="white"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="opacity-80"
-    >
-      <line x1="12" y1="5" x2="12" y2="19" />
-      <polyline points="19 12 12 19 5 12" />
-    </svg>
-  </motion.div>
+
 </div>
 
 
