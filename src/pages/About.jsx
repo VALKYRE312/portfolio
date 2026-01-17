@@ -81,57 +81,58 @@ const hobbies = [
     title: "Design Exploration",
     color: "bg-pink-200",
     images: [
-      "src/assets/hobbies/design1.jpg",
-      "src/assets/hobbies/design2.jpg",
-      "src/assets/hobbies/design3.jpg",
+      "/hobbies/design1.jpg",
+      "/hobbies/design2.jpg",
+      "/hobbies/design3.jpg",
     ],
   },
   {
     title: "Pets",
     color: "bg-emerald-300",
     images: [
-      "src/assets/hobbies/social1.jpg",
-      "src/assets/hobbies/social2.jpg",
-      "src/assets/hobbies/social3.jpg",
+      "/hobbies/social1.jpg",
+      "/hobbies/social2.jpg",
+      "/hobbies/social3.jpg",
     ],
   },
   {
     title: "Art",
     color: "bg-orange-200",
     images: [
-      "src/assets/hobbies/plan1.jpg",
-      "src/assets/hobbies/plan2.jpg",
-      "src/assets/hobbies/plan3.jpg",
+      "/hobbies/plan1.jpg",
+      "/hobbies/plan2.jpg",
+      "/hobbies/plan3.jpg",
     ],
   },
   {
     title: "Writing",
     color: "bg-yellow-200",
     images: [
-      "src/assets/hobbies/write1.jpg",
-      "src/assets/hobbies/write2.jpg",
-      "src/assets/hobbies/write3.jpg",
+      "/hobbies/write1.jpg",
+      "/hobbies/write2.jpg",
+      "/hobbies/write3.jpg",
     ],
   },
   {
     title: "Travelling",
     color: "bg-fuchsia-300",
     images: [
-      "src/assets/hobbies/travel1.jpg",
-      "src/assets/hobbies/travel2.jpg",
-      "src/assets/hobbies/travel3.jpg",
+      "/hobbies/travel1.jpg",
+      "/hobbies/travel2.jpg",
+      "/hobbies/travel3.jpg",
     ],
   },
   {
     title: "Cooking",
     color: "bg-sky-300",
     images: [
-      "src/assets/hobbies/recipe1.jpg",
-      "src/assets/hobbies/recipe2.jpg",
-      "src/assets/hobbies/recipe3.jpg",
+      "/hobbies/recipe1.jpg",
+      "/hobbies/recipe2.jpg",
+      "/hobbies/recipe3.jpg",
     ],
   },
 ];
+
 
 /* ================= MAIN PAGE ================= */
 
