@@ -14,12 +14,8 @@ export default function Home() {
       <div id="top" />
 
       {/* ================= HERO ================= */}
-<section className="min-h-screen flex items-center px-6 md:px-12 lg:px-16 pt-30 relative">
-  
-  {/* Hero Text */}
- <div className="max-w-5xl">
-  <br></br>
-  <motion.h1
+      <section className="min-h-screen flex items-center px-6 md:px-12 lg:px-16 pt-32">
+<motion.h1
     initial={{ opacity: 0, y: 40 }}
     animate={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.9, ease: "easeOut" }}
@@ -35,15 +31,8 @@ export default function Home() {
     <br />
     digital products.
   </motion.h1>
-<br></br><br></br>
+      </section>
 
-</div>
-
-
-
-</section>
-
-<br></br><br></br>
       {/* ================= PROJECT 1 ================= */}
       <ProjectBlock
         image={projectOneImage}
@@ -58,68 +47,70 @@ export default function Home() {
         link="/work/year-wrap"
       />
 
-      {/* ================= ABOUT ================= */}
-      <section className="px-6 md:px-12 lg:px-16 lg:py-32 flex flex-col lg:flex-row gap-16 items-center">
+{/* ================= ABOUT ================= */}
+<section className="px-6 md:px-12 lg:px-16 lg:py-40 flex flex-col lg:flex-row gap-20 items-center">
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="max-w-xl"
-        >
-          <h3 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] mb-10 leading-tight">
-            Nice to meet you,
-            <br />
-            my name is Kyrie.
-          </h3>
-
-         <p className="text-white/70 text-[clamp(1.1rem,2vw,1.6rem)] leading-relaxed">
-  As a frontend-focused designer, I enjoy working
-  at the intersection of design and development,
-  collaborating across disciplines to build
-  meaningful digital experiences.
-</p>
-
-{/* 👉 ABOUT PAGE BUTTON */}
-<motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ delay: 0.3, duration: 0.6 }}
-  className="mt-10"
->
-  <button
-    onClick={() => navigate("/about")}
-    className="
-      px-8 py-3 rounded-full
-      border border-white/40
-      text-sm tracking-wide
-      text-white/80
-      hover:bg-white hover:text-black
-      transition-all duration-300
-    "
+  {/* TEXT */}
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8 }}
+    className="max-w-xl"
   >
-    More about me
-  </button>
-</motion.div>
+    <h3 className="font-serif text-[clamp(2.5rem,6vw,4.5rem)] mb-10 leading-tight">
+      Nice to meet you,
+      <br />
+      my name is Kyrie.
+    </h3>
 
-        </motion.div>
+    <p className="text-white/70 text-[clamp(1.1rem,2vw,1.6rem)] leading-relaxed">
+I’m a full-stack engineer focused on building AI-enabled products and scalable API architectures. I work across frontend, backend, and machine learning layers to deliver fast, secure, and intelligent digital solutions.
+    </p>
+  </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
-          className="w-full lg:flex-1 h-[320px] md:h-[420px] lg:h-[520px] overflow-hidden rounded-2xl"
-        >
-          <img
-            src={aboutImage}
-            alt="About"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-      </section>
+  {/* IMAGE + BUTTON (STACKED) */}
+  <motion.div
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8, delay: 0.1 }}
+    className="w-full lg:flex-1 flex flex-col gap-10"
+  >
+    {/* IMAGE */}
+    <div className="h-[320px] md:h-[420px] lg:h-[520px] overflow-hidden rounded-2xl">
+      <img
+        src={aboutImage}
+        alt="About Rue"
+        className="w-full h-full object-cover"
+      />
+    </div>
+
+    {/* 👉 ABOUT PAGE BUTTON (AFTER IMAGE) */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: 0.2, duration: 0.6 }}
+    >
+      <button
+        onClick={() => navigate("/about")}
+        className="
+          px-8 py-3 rounded-full
+          border border-white/40
+          text-sm tracking-wide
+          text-white/80
+          hover:bg-white hover:text-black
+          transition-all duration-300
+        "
+      >
+        More about me
+      </button>
+    </motion.div>
+  </motion.div>
+
+</section>
+
 <br></br><br></br><br></br>
       {/* ================= PROJECT 3 ================= */}
       <ProjectBlock
@@ -148,7 +139,7 @@ export default function Home() {
             </div>
 
             <p className="font-serif mt-12 pl-6 text-[clamp(1.4rem,3vw,3rem)]">
-              <em className="italic">With Passion,</em> Rue.
+              <em className="italic">With Passion,</em> Kyrie.
             </p>
           </motion.div>
 
@@ -170,20 +161,34 @@ export default function Home() {
       </section>
 
       {/* ================= CONTACT CTA ================= */}
-      <motion.section
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.9 }}
-        className="px-6 md:px-12 lg:px-16 py-32 md:py-48 border-t border-white/20"
-      >
-        <h2 className="font-serif text-[clamp(2rem,5vw,4.5rem)] leading-tight max-w-4xl text-[#58737f]">
-          Feel free to drop a message on{" "}
-          <span className="underline">LinkedIn</span>, or
-          send me an <span className="underline">email</span> —<br />
-          I’d love to connect.
-        </h2>
-      </motion.section>
+<motion.section
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.9 }}
+  className="px-6 md:px-12 lg:px-16 py-32 md:py-48 border-t border-white/20"
+>
+  <h2 className="font-serif text-[clamp(2rem,5vw,4.5rem)] leading-tight max-w-4xl text-[#58737f]">
+    Feel free to drop a message on{" "}
+    <a
+      href="https://www.linkedin.com/in/nabanita-saha20041123/"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="underline hover:text-white transition"
+    >
+      LinkedIn
+    </a>
+    , or send me an{" "}
+    <a
+      href="mailto:nabanitasaha433@gmail.com"
+      className="underline hover:text-white transition"
+    >
+      email
+    </a>{" "}
+    —<br />
+    I’d love to connect.
+  </h2>
+</motion.section>
 
      
     </main>
@@ -216,7 +221,8 @@ function ProjectBlock({ image, title, link }) {
 
         <div className="flex items-center gap-8 text-sm text-white/60">
           <span>// Frontend Design</span>
-          <span>// Interaction</span>
+          <span>// Interactive</span>
+          
 
           <button
             onClick={() => navigate(link)}
