@@ -2,73 +2,11 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useRef } from "react";
-
-const projects = [
-  {
-    title: "Personify",
-    description:
-      "A personality-driven web experience focused on motion, layout rhythm, and emotional tone.",
-    backend:
-      "Built with React, Framer Motion, Flask, PostgreSQL, and JWT authentication. Includes AI-driven personality logic and dynamic user sessions.",
-    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/personify_qpqv3l.mp4",
-    color: "bg-pink-200/10",
-    link: "/work/personify",
-  },
-  {
-    title: "Year Wrap",
-    description:
-      "An interactive yearly recap designed around storytelling and progressive disclosure.",
-    backend:
-      "Powered by React, Node.js, Express, and MongoDB. Uses AI summarization APIs to generate personalized yearly insights.",
-    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/yearwrap_c5vjid.mp4",
-    color: "bg-emerald-200/10",
-    link: "/work/year-wrap",
-  },
-  {
-    title: "Brew n Crumbs",
-    description:
-      "A brand-focused website exploring warmth, typography, and subtle interactions.",
-    backend:
-      "Full-stack e-commerce setup with React, Firebase, Stripe payments, and a custom admin dashboard for product management.",
-    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/brew_fzjcgf.mp4",
-    color: "bg-orange-200/10",
-    link: "/work/brew-n-crumbs",
-  },
-  {
-    title: "Smart Health",
-    description:
-      "A frontend experiment exploring layout systems and transitions.",
-    backend:
-      "Healthcare dashboard built with Next.js, FastAPI, and PostgreSQL. Includes protected routes and REST API integration.",
-    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/sh_reoow2.mp4",
-    color: "bg-yellow-200/10",
-    link: "/work/smart-health",
-  },
-  {
-    title: "Italian Cuisine",
-    description:
-      "A UI-focused project emphasizing clarity and hierarchy.",
-    backend:
-      "Restaurant web app using React, Node.js, Express, and MySQL with reservation and contact form APIs.",
-    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/italian_k0jd9x.mp4",
-    color: "bg-fuchsia-200/10",
-    link: "/work/italian-cuisine",
-  },
-  {
-    title: "Eye Opener",
-    description:
-      "A motion-first interface designed for smooth user flow.",
-    backend:
-      "Animation-heavy React experience with GSAP and Framer Motion, optimized for performance and scroll-based transitions.",
-    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/eo_ybwpfa.mp4",
-    color: "bg-sky-200/10",
-    link: "/work/eye-opener",
-  },
-];
+import usePortfolioData from "../hooks/usePortfolioData";
 
 
 
-function VideoPreview({ src }) {
+function VideoPreview({ src, image }) {
   const videoRef = useRef(null);
   const [paused, setPaused] = useState(true);
   
@@ -113,6 +51,19 @@ function VideoPreview({ src }) {
 
   /* ===== Mute / Unmute ===== */
   
+  if (!src) {
+    return (
+      <div className="relative h-[260px] bg-white/10">
+        {image ? (
+          <img src={image} alt="" className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center text-white/35 font-serif text-2xl">
+            Preview
+          </div>
+        )}
+      </div>
+    );
+  }
 
   return (
     <div
@@ -171,6 +122,7 @@ function VideoPreview({ src }) {
 
 export default function Work() {
   const navigate = useNavigate();
+  const { projects } = usePortfolioData();
 
   return (
     <main className="bg-black text-white px-6 md:px-12 lg:px-20 pt-32 pb-40">
@@ -183,7 +135,7 @@ export default function Work() {
 
           return (
             <motion.div
-              key={project.title}
+              key={project.id}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -218,7 +170,7 @@ export default function Work() {
 
               {/* VIDEO */}
               <div className="flex-1 w-full max-w-md rounded-2xl overflow-hidden shadow-lg">
-                <VideoPreview src={project.video} />
+                <VideoPreview src={project.video} image={project.images?.[0]} />
               </div>
             </motion.div>
           );

@@ -8,6 +8,8 @@ import Work from "./pages/Work";
 import About from "./pages/About";
 import Project from "./pages/Project";
 import Contact from "./pages/Contact";
+import Admin from "./pages/Admin";
+import DynamicProject from "./pages/DynamicProject";
 
 import Personify from "./pages/projects/Personify";
 import YearWrap from "./pages/projects/YearWrap";
@@ -33,6 +35,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/work/project-1" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<Admin />} />
 
             <Route path="/work/personify" element={<Personify />} />
             <Route path="/work/year-wrap" element={<YearWrap />} />
@@ -40,6 +43,7 @@ export default function App() {
             <Route path="/work/smart-health" element={<SmartHealth />} />
             <Route path="/work/italian-cuisine" element={<ItalianCuisine />} />
             <Route path="/work/eye-opener" element={<EyeOpener />} />
+            <Route path="/work/:projectId" element={<DynamicProject />} />
           </Routes>
         </div>
 

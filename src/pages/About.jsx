@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
 import aboutImage from "../assets/images/home-about.jpeg";
+import usePortfolioData from "../hooks/usePortfolioData";
 
 /* ================= VERTICAL STATEMENT ================= */
 
@@ -61,21 +62,6 @@ export function VerticalStatement() {
 }
 
 /* ================= DATA ================= */
-
-const skills = [
-  "JavaScript",
-  "React",
-  "NodeJS",
-  "ExpressJS",
-  "Tailwind",
-  "Python",
-  "Fast API",
-  "Rest API",
-  "MongoDB",
-  "PostgreSQL",
-  "Git",
-  "AWS",
-];
 
 const hobbies = [
   {
@@ -140,6 +126,7 @@ const hobbies = [
 export default function About() {
   const navigate = useNavigate();
   const [activeHobby, setActiveHobby] = useState(null);
+  const { skills } = usePortfolioData();
 
   return (
     <motion.main
