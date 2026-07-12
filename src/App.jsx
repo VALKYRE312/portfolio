@@ -18,7 +18,11 @@ import YearWrap from "./pages/projects/YearWrap";
 import BrewNCrumbs from "./pages/projects/BrewNCrumbs";
 import SmartHealth from "./pages/projects/SmartHealth";
 import ItalianCuisine from "./pages/projects/ItalianCuisine";
-import EyeOpener from "./pages/projects/EyeOpener"; // ✅ FIXED
+import EyeOpener from "./pages/projects/EyeOpener";
+import OnlineInstitute from "./pages/projects/OnlineInstitute";
+import Quizzio from "./pages/projects/Quizzio";
+import GhoroaBazar from "./pages/projects/GhoroaBazar";
+import WorkTest from "./pages/WorkTest";
 
 export default function App() {
   return (
@@ -34,6 +38,7 @@ export default function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/work" element={<Work />} />
+            <Route path="/work-test" element={<WorkTest />} />
             <Route path="/about" element={<About />} />
             <Route path="/work/project-1" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
@@ -53,6 +58,9 @@ export default function App() {
             <Route path="/work/smart-health" element={<SmartHealth />} />
             <Route path="/work/italian-cuisine" element={<ItalianCuisine />} />
             <Route path="/work/eye-opener" element={<EyeOpener />} />
+            <Route path="/work/online-institute" element={<OnlineInstitute />} />
+            <Route path="/work/quizzio" element={<Quizzio />} />
+            <Route path="/work/ghoroa-bazar" element={<GhoroaBazar />} />
             <Route path="/work/:projectId" element={<DynamicProject />} />
           </Routes>
         </div>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Debug Projects</title>
+    <style>
+        body { font-family: monospace; padding: 20px; background: #1a1a1a; color: #fff; }
+        .project { border: 1px solid #333; padding: 15px; margin: 10px 0; border-radius: 8px; }
+        .project h3 { margin: 0 0 10px 0; color: #4CAF50; }
+        .log { background: #222; padding: 10px; margin: 10px 0; border-left: 3px solid #4CAF50; }
+    </style>
+</head>
+<body>
+    <h1>Project Debugging</h1>
+    <div id="logs"></div>
+    <div id="projects"></div>
+
+    <script type="module">
+        const logs = document.getElementById('logs');
+        const projects = document.getElementById('projects');
+
+        function log(msg, data = null) {
+            const div = document.createElement('div');
+            div.className = 'log';
+            div.textContent = msg + (data ? ': ' + JSON.stringify(data, null, 2) : '');
+            logs.appendChild(div);
+            console.log(msg, data);
+        }
+
+        // Simulate default projects
+        const defaultProjects = [
+            { id: "personify", title: "Personify", color: "bg-pink-200/10" },
+            { id: "year-wrap", title: "Year Wrap", color: "bg-emerald-200/10" },
+            { id: "brew-n-crumbs", title: "Brew n Crumbs", color: "bg-orange-200/10" },
+            { id: "smart-health", title: "Smart Health", color: "bg-yellow-200/10" },
+            { id: "italian-cuisine", title: "Italian Cuisine", color: "bg-fuchsia-200/10" },
+            { id: "eye-opener", title: "Eye Opener", color: "bg-sky-200/10" },
+        ];
+
+        log('Default projects count', defaultProjects.length);
+
+        // Fetch from API
+        const API_URL = 'http://localhost:5000/api/projects?published=true';
+        log('Fetching from', API_URL);
+
+        async function fetchAndRender() {
+            try {
+                const response = await fetch(API_URL);
+                log('Response status', response.status);
+                
+                if (!response.ok) {
+                    throw new Error('HTTP error ' + response.status);
+                }
+
+                const apiProjects = await response.json();
+                log('API projects count', apiProjects.length);
+                log('API projects', apiProjects.map(p => ({ id: p.id, title: p.title })));
+
+                const merged = [...defaultProjects, ...apiProjects];
+                log('Merged projects count', merged.length);
+
+                // Check for duplicate IDs
+                const ids = merged.map(p => p.id);
+                const duplicates = ids.filter((id, index) => ids.indexOf(id) !== index);
+                if (duplicates.length > 0) {
+                    log('⚠️ DUPLICATE IDs FOUND', duplicates);
+                }
+
+                // Render all projects
+                merged.forEach((project, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'project';
+                    div.innerHTML = `
+                        <h3>${index + 1}. ${project.title}</h3>
+                        <div>ID: ${project.id}</div>
+                        <div>Color: ${project.color || 'N/A'}</div>
+                    `;
+                    projects.appendChild(div);
+                });
+
+                log('✅ Rendered all projects successfully');
+
+            } catch (error) {
+                log('❌ Error', error.message);
+            }
+        }
+
+        fetchAndRender();
+    </script>
+</body>
+</html>

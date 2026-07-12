@@ -63,9 +63,74 @@ export const defaultProjects = [
     color: "bg-sky-200/10",
     link: "/work/eye-opener",
   },
+  {
+    id: "online-institute",
+    title: "Online Institute",
+    description:
+      "A full-stack educational management platform for online admissions, course management, and institute administration with a secure admin dashboard.",
+    backend:
+      "Built with React, Node.js, Express, MongoDB, Tailwind CSS, Cloudinary, and JWT. Features online admissions, course and semester management, dynamic enrollment forms, secure authentication, and a comprehensive admin dashboard.",
+    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/v1783794196/newins_avnryu.mp4",
+    thumbnail: "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783800175/portfolio/thumbnails/ggtz1r5ananiygwiw2fd.png",
+    images: [
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783800177/portfolio/gallery/jsw5hvvpf1m64gj3sn9e.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783800178/portfolio/gallery/iokrct1agglwvl30ygio.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783800178/portfolio/gallery/hx8i7wprdahnebozunf8.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783800178/portfolio/gallery/nvlqkgyl2o9g6ucee25y.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783800179/portfolio/gallery/nwbcikifwycvpbqwz19z.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783800178/portfolio/gallery/kba4oi8pt4soh8g91exd.png"
+    ],
+    color: "bg-violet-200/10",
+    link: "/work/online-institute",
+  },
+  {
+    id: "quizzio",
+    title: "Quizzio",
+    description:
+      "An AI-powered career platform featuring mock interviews, resume building, job applications, skill assessments, and personalized career tools.",
+    backend:
+      "Built with React, Spring Boot, Java, MySQL, JWT, REST API, AI APIs, and Tailwind CSS. Combines interactive quizzes, AI-driven interview feedback, resume generation, and career resources into a single ecosystem.",
+    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/v1783801031/quizziovid_vpoffy.mp4",
+    thumbnail: "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802066/portfolio/thumbnails/pukzypkjjib5bi50wxwe.png",
+    images: [
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802068/portfolio/gallery/qnpstyoou5zecdnrrnxe.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802069/portfolio/gallery/u7nnxtvplxqzgcxiwnlu.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802069/portfolio/gallery/daelbwkxcxvblitz7mss.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802069/portfolio/gallery/s5jtkvjfvsxzzdufhpgz.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802068/portfolio/gallery/ikpadd9gcpuh7jpilmos.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802070/portfolio/gallery/w0sr9jg90skp3gnlryrx.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802069/portfolio/gallery/yzk78a3tu1pargut4tjh.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783802070/portfolio/gallery/fngvfkitng9qnogptcup.png"
+    ],
+    color: "bg-cyan-200/10",
+    link: "/work/quizzio",
+  },
+  {
+    id: "ghoroa-bazar",
+    title: "Ghoroa Bazar",
+    description:
+      "A full-stack e-commerce platform for discovering and purchasing authentic homemade products from local artisans.",
+    backend:
+      "Built with Next.js, React, Node.js, MongoDB, Tailwind CSS, Cloudinary, JWT, and REST API. Features secure authentication, product catalog, shopping cart, order processing, inventory management, and an advanced admin dashboard.",
+    video: "https://res.cloudinary.com/dbnqvbllo/video/upload/v1783844177/Ghoroabazarvid_ws3g9b.mp4",
+    thumbnail: "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868218/portfolio/thumbnails/koqhtpvijflyqed6je9c.png",
+    images: [
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868219/portfolio/gallery/cg9f5ijm9xruic6gzonn.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868221/portfolio/gallery/qq27wisetedyexr3eltp.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868224/portfolio/gallery/tzb7ntpdyccxbshwgdkb.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868220/portfolio/gallery/c4o2sa4dmiqssqxuyzga.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868221/portfolio/gallery/meemsuq34ydicgwvn8kx.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868223/portfolio/gallery/d8rqbmzkj9imcnnjyse8.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868222/portfolio/gallery/manlgn8swl2lt99eyqqe.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868220/portfolio/gallery/uuuan4aiuanw72lydx3f.png",
+      "https://res.cloudinary.com/dbnqvbllo/image/upload/v1783868221/portfolio/gallery/hu6rgmrgaq2cvjs6kdvb.png"
+    ],
+    color: "bg-teal-200/10",
+    link: "/work/ghoroa-bazar",
+  },
 ];
 
-// API Base URL
+// API Base URL - kept for backward compatibility but no longer used
 export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
 
 export const defaultSkills = [
@@ -132,31 +197,20 @@ export function saveCustomSkills(skills) {
   window.localStorage.setItem(STORAGE_KEYS.skills, JSON.stringify(skills));
 }
 
-// Fetch projects from backend API
+// Fetch projects from backend API - DEPRECATED, now using hardcoded data only
 export async function fetchProjectsFromAPI() {
-  try {
-    const response = await fetch(`${API_BASE_URL}/projects?published=true`);
-    if (!response.ok) {
-      console.error('Failed to fetch projects from API');
-      return [];
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error('Error fetching projects:', error);
-    return [];
-  }
+  console.warn('⚠️ fetchProjectsFromAPI is deprecated - all projects are now hardcoded');
+  return [];
 }
 
-// Get all projects: existing hardcoded + new from API
+// Get all projects: existing hardcoded only (API removed)
 export async function getProjects() {
-  const apiProjects = await fetchProjectsFromAPI();
-  return [...defaultProjects, ...apiProjects];
+  return defaultProjects;
 }
 
 // Sync version for components that need immediate data
 export function getProjectsSync() {
-  return [...defaultProjects, ...getCustomProjects()];
+  return defaultProjects;
 }
 
 export function getSkills() {

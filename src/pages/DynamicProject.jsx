@@ -23,15 +23,27 @@ export default function DynamicProject() {
 
       // Otherwise fetch from API
       try {
-        const response = await fetch(`${API_BASE_URL}/projects/${projectId}`);
+        const url = `${API_BASE_URL}/projects/${projectId}`;
+        console.log('🔍 [DynamicProject.loadProject] Fetching URL:', url);
+        console.log('🔍 [DynamicProject.loadProject] API_BASE_URL:', API_BASE_URL);
+        console.log('🔍 [DynamicProject.loadProject] projectId:', projectId);
+        
+        const response = await fetch(url);
+        
+        console.log('✅ [DynamicProject.loadProject] Response URL:', response.url);
+        console.log('✅ [DynamicProject.loadProject] Response Status:', response.status);
+        console.log('✅ [DynamicProject.loadProject] Content-Type:', response.headers.get('content-type'));
+        
         if (response.ok) {
           const data = await response.json();
+          console.log('✅ [DynamicProject.loadProject] Project data received:', data.title);
           setProject(data);
         } else {
+          console.error('❌ [DynamicProject.loadProject] Response not OK');
           setProject(null);
         }
       } catch (error) {
-        console.error('Error fetching project:', error);
+        console.error('❌ [DynamicProject.loadProject] Error fetching project:', error);
         setProject(null);
       } finally {
         setLoading(false);

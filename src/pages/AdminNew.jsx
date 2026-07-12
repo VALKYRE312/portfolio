@@ -34,11 +34,21 @@ export default function AdminNew() {
 
   const fetchProjects = async () => {
     try {
-      const response = await fetch(`${API_BASE_URL}/projects`);
+      const url = `${API_BASE_URL}/projects`;
+      console.log('🔍 [AdminNew.fetchProjects] Fetching URL:', url);
+      console.log('🔍 [AdminNew.fetchProjects] API_BASE_URL:', API_BASE_URL);
+      
+      const response = await fetch(url);
+      
+      console.log('✅ [AdminNew.fetchProjects] Response URL:', response.url);
+      console.log('✅ [AdminNew.fetchProjects] Response Status:', response.status);
+      console.log('✅ [AdminNew.fetchProjects] Content-Type:', response.headers.get('content-type'));
+      
       const data = await response.json();
+      console.log('✅ [AdminNew.fetchProjects] Data received:', data.length, 'projects');
       setProjects(data);
     } catch (error) {
-      console.error('Error fetching projects:', error);
+      console.error('❌ [AdminNew.fetchProjects] Error fetching projects:', error);
     }
   };
 
@@ -91,16 +101,25 @@ export default function AdminNew() {
         formData.append('gallery', file);
       });
 
-      const response = await fetch(`${API_BASE_URL}/projects`, {
+      const url = `${API_BASE_URL}/projects`;
+      console.log('🔍 [AdminNew.addProject] Posting to URL:', url);
+      console.log('🔍 [AdminNew.addProject] API_BASE_URL:', API_BASE_URL);
+      
+      const response = await fetch(url, {
         method: 'POST',
         body: formData,
       });
+
+      console.log('✅ [AdminNew.addProject] Response URL:', response.url);
+      console.log('✅ [AdminNew.addProject] Response Status:', response.status);
+      console.log('✅ [AdminNew.addProject] Content-Type:', response.headers.get('content-type'));
 
       if (!response.ok) {
         throw new Error('Failed to create project');
       }
 
       const data = await response.json();
+      console.log('✅ [AdminNew.addProject] Project created:', data.title);
       setMessage(`✓ ${data.title} was added successfully!`);
       setProjectForm(emptyProject);
       setThumbnail(null);
@@ -124,14 +143,23 @@ export default function AdminNew() {
     }
 
     try {
-      const response = await fetch(`${API_BASE_URL}/projects/${slug}`, {
+      const url = `${API_BASE_URL}/projects/${slug}`;
+      console.log('🔍 [AdminNew.removeProject] Deleting URL:', url);
+      console.log('🔍 [AdminNew.removeProject] API_BASE_URL:', API_BASE_URL);
+      
+      const response = await fetch(url, {
         method: 'DELETE',
       });
+
+      console.log('✅ [AdminNew.removeProject] Response URL:', response.url);
+      console.log('✅ [AdminNew.removeProject] Response Status:', response.status);
+      console.log('✅ [AdminNew.removeProject] Content-Type:', response.headers.get('content-type'));
 
       if (!response.ok) {
         throw new Error('Failed to delete project');
       }
 
+      console.log('✅ [AdminNew.removeProject] Project deleted successfully');
       setMessage('✓ Project deleted successfully');
       fetchProjects();
       window.dispatchEvent(new Event("portfolio-data-updated"));
