@@ -195,7 +195,11 @@ export default function Work() {
 
               {/* VIDEO */}
               <div className="flex-1 w-full max-w-md rounded-2xl overflow-hidden shadow-lg">
-                <VideoPreview src={project.video} image={project.images?.[0]} videoId={project.id} />
+                <VideoPreview 
+                  src={project.video} 
+                  image={project.thumbnail || project.images?.[0]} 
+                  videoId={project.id} 
+                />
               </div>
             </motion.div>
           );
