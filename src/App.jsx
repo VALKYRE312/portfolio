@@ -2,12 +2,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/Home";
 import Work from "./pages/Work";
 import About from "./pages/About";
 import Project from "./pages/Project";
 import Contact from "./pages/Contact";
+import Login from "./pages/Login";
 import AdminNew from "./pages/AdminNew";
 import DynamicProject from "./pages/DynamicProject";
 
@@ -35,7 +37,15 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/work/project-1" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<AdminNew />} />
+            <Route path="/login" element={<Login />} />
+            <Route 
+              path="/admin" 
+              element={
+                <ProtectedRoute>
+                  <AdminNew />
+                </ProtectedRoute>
+              } 
+            />
 
             <Route path="/work/personify" element={<Personify />} />
             <Route path="/work/year-wrap" element={<YearWrap />} />

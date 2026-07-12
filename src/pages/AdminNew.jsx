@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { API_BASE_URL, slugify } from "../data/portfolioData";
 
 const emptyProject = {
@@ -15,12 +15,18 @@ const emptyProject = {
 };
 
 export default function AdminNew() {
+  const navigate = useNavigate();
   const [projectForm, setProjectForm] = useState(emptyProject);
   const [thumbnail, setThumbnail] = useState(null);
   const [gallery, setGallery] = useState([]);
   const [projects, setProjects] = useState([]);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
+  const handleLogout = () => {
+    sessionStorage.removeItem("isAuthenticated");
+    navigate("/login");
+  };
 
   useEffect(() => {
     fetchProjects();
@@ -143,12 +149,20 @@ export default function AdminNew() {
             <h1 className="font-serif text-5xl md:text-7xl">Manage Portfolio</h1>
           </div>
 
-          <Link
-            to="/work"
-            className="w-fit px-5 py-3 rounded-full border border-white/20 text-sm text-white/75 hover:bg-white hover:text-black transition"
-          >
-            View Work
-          </Link>
+          <div className="flex gap-3">
+            <Link
+              to="/work"
+              className="w-fit px-5 py-3 rounded-full border border-white/20 text-sm text-white/75 hover:bg-white hover:text-black transition"
+            >
+              View Work
+            </Link>
+            <button
+              onClick={handleLogout}
+              className="w-fit px-5 py-3 rounded-full border border-red-500/20 text-sm text-red-400/75 hover:bg-red-500 hover:text-white transition"
+            >
+              Logout
+            </button>
+          </div>
         </div>
 
         {message && (
