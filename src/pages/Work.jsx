@@ -6,7 +6,7 @@ import usePortfolioData from "../hooks/usePortfolioData";
 
 
 
-function VideoPreview({ src, image }) {
+function VideoPreview({ src, image, videoId }) {
   const videoRef = useRef(null);
   const [paused, setPaused] = useState(true);
   
@@ -29,6 +29,19 @@ function VideoPreview({ src, image }) {
     return () => observer.disconnect();
   }, []);
 
+  /* ===== Stop other videos when this one plays ===== */
+  useEffect(() => {
+    const handleOtherVideoPlay = (e) => {
+      if (e.detail !== videoId && videoRef.current && !videoRef.current.paused) {
+        videoRef.current.pause();
+        setPaused(true);
+      }
+    };
+
+    window.addEventListener('videoPlaying', handleOtherVideoPlay);
+    return () => window.removeEventListener('videoPlaying', handleOtherVideoPlay);
+  }, [videoId]);
+
   /* ===== Progress tracking ===== */
   const handleTimeUpdate = () => {
     if (!videoRef.current) return;
@@ -41,6 +54,8 @@ function VideoPreview({ src, image }) {
     if (!videoRef.current) return;
 
     if (videoRef.current.paused) {
+      // Notify other videos to stop
+      window.dispatchEvent(new CustomEvent('videoPlaying', { detail: videoId }));
       videoRef.current.play();
       setPaused(false);
     } else {
@@ -122,7 +137,17 @@ function VideoPreview({ src, image }) {
 
 export default function Work() {
   const navigate = useNavigate();
-  const { projects } = usePortfolioData();
+  const { projects, loading } = usePortfolioData();
+
+  if (loading) {
+    return (
+      <main className="bg-black text-white px-6 md:px-12 lg:px-20 pt-32 pb-40">
+        <div className="max-w-7xl mx-auto flex items-center justify-center min-h-[60vh]">
+          <div className="text-white/50 text-lg">Loading projects...</div>
+        </div>
+      </main>
+    );
+  }
 
   return (
     <main className="bg-black text-white px-6 md:px-12 lg:px-20 pt-32 pb-40">
@@ -170,7 +195,7 @@ export default function Work() {
 
               {/* VIDEO */}
               <div className="flex-1 w-full max-w-md rounded-2xl overflow-hidden shadow-lg">
-                <VideoPreview src={project.video} image={project.images?.[0]} />
+                <VideoPreview src={project.video} image={project.images?.[0]} videoId={project.id} />
               </div>
             </motion.div>
           );

@@ -1,35 +1,44 @@
 import { useEffect, useState } from "react";
 import {
-  getProjects,
+  defaultProjects,
   getSkills,
-  saveCustomProjects,
   saveCustomSkills,
   STORAGE_KEYS,
+  fetchProjectsFromAPI,
 } from "../data/portfolioData";
 
 export default function usePortfolioData() {
-  const [projects, setProjects] = useState(() => getProjects());
+  const [projects, setProjects] = useState(defaultProjects);
   const [skills, setSkills] = useState(() => getSkills());
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const loadProjects = async () => {
+      setLoading(true);
+      try {
+        const apiProjects = await fetchProjectsFromAPI();
+        setProjects([...defaultProjects, ...apiProjects]);
+      } catch (error) {
+        console.error('Error loading projects:', error);
+        setProjects(defaultProjects);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProjects();
+
     const refresh = () => {
-      setProjects(getProjects());
+      loadProjects();
       setSkills(getSkills());
     };
 
     window.addEventListener("portfolio-data-updated", refresh);
-    window.addEventListener("storage", refresh);
 
     return () => {
       window.removeEventListener("portfolio-data-updated", refresh);
-      window.removeEventListener("storage", refresh);
     };
   }, []);
-
-  const updateCustomProjects = (projectsToSave) => {
-    saveCustomProjects(projectsToSave);
-    window.dispatchEvent(new Event("portfolio-data-updated"));
-  };
 
   const updateCustomSkills = (skillsToSave) => {
     saveCustomSkills(skillsToSave);
@@ -39,7 +48,7 @@ export default function usePortfolioData() {
   return {
     projects,
     skills,
-    updateCustomProjects,
+    loading,
     updateCustomSkills,
     storageKeys: STORAGE_KEYS,
   };

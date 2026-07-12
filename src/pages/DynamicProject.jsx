@@ -1,14 +1,55 @@
 import { AnimatePresence, motion } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import usePortfolioData from "../hooks/usePortfolioData";
+import { API_BASE_URL, defaultProjects } from "../data/portfolioData";
 
 export default function DynamicProject() {
   const navigate = useNavigate();
   const { projectId } = useParams();
-  const { projects } = usePortfolioData();
+  const [project, setProject] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [activeImage, setActiveImage] = useState(null);
-  const project = projects.find((item) => item.id === projectId);
+
+  useEffect(() => {
+    const loadProject = async () => {
+      // Check if it's an existing hardcoded project
+      const existingProject = defaultProjects.find((item) => item.id === projectId);
+      
+      if (existingProject) {
+        setProject(existingProject);
+        setLoading(false);
+        return;
+      }
+
+      // Otherwise fetch from API
+      try {
+        const response = await fetch(`${API_BASE_URL}/projects/${projectId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setProject(data);
+        } else {
+          setProject(null);
+        }
+      } catch (error) {
+        console.error('Error fetching project:', error);
+        setProject(null);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProject();
+  }, [projectId]);
+
+  if (loading) {
+    return (
+      <main className="min-h-screen bg-black text-white px-6 md:px-12 lg:px-16 pt-32 pb-32">
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="text-white/50 text-lg">Loading project...</div>
+        </div>
+      </main>
+    );
+  }
 
   if (!project) {
     return (
@@ -43,24 +84,70 @@ export default function DynamicProject() {
         {project.title}
       </h1>
 
-      <p className="max-w-2xl text-white/70 text-lg leading-relaxed">
-        {project.description}
-      </p>
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+        {/* Left: Description */}
+        <div className="flex-1">
+          <p className="text-white/70 text-lg leading-relaxed">
+            {project.description}
+          </p>
 
-      {project.backend && (
-        <p className="max-w-2xl text-white/45 text-base leading-relaxed mt-5">
-          {project.backend}
-        </p>
-      )}
+          {project.backend && (
+            <p className="text-white/45 text-base leading-relaxed mt-5">
+              {project.backend}
+            </p>
+          )}
 
-      {project.video && (
-        <video
-          src={project.video}
-          controls
-          playsInline
-          className="mt-16 w-full max-w-4xl rounded-xl border border-white/10"
-        />
-      )}
+          {project.techStack && project.techStack.length > 0 && (
+            <div className="mt-8">
+              <h3 className="text-sm tracking-widest text-white/45 mb-3">TECH STACK</h3>
+              <div className="flex flex-wrap gap-2">
+                {project.techStack.map((tech, i) => (
+                  <span key={i} className="px-3 py-1 rounded-full bg-white/10 text-white/70 text-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {(project.github || project.live) && (
+            <div className="mt-8 flex gap-4">
+              {project.github && (
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 rounded-full border border-white/20 text-white/75 hover:bg-white hover:text-black transition text-sm"
+                >
+                  GitHub →
+                </a>
+              )}
+              {project.live && (
+                <a
+                  href={project.live}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="px-5 py-2 rounded-full bg-white text-black hover:bg-white/90 transition text-sm font-medium"
+                >
+                  Live Demo →
+                </a>
+              )}
+            </div>
+          )}
+        </div>
+
+        {/* Right: Video */}
+        {project.video && (
+          <div className="w-full lg:w-[480px] lg:sticky lg:top-32">
+            <video
+              src={project.video}
+              controls
+              playsInline
+              className="w-full rounded-xl border border-white/10"
+            />
+          </div>
+        )}
+      </div>
 
       {images.length > 0 && (
         <section className="mt-24">

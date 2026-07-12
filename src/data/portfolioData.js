@@ -1,3 +1,4 @@
+// Existing hardcoded projects - DO NOT MODIFY
 export const defaultProjects = [
   {
     id: "personify",
@@ -64,6 +65,9 @@ export const defaultProjects = [
   },
 ];
 
+// API Base URL
+export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+
 export const defaultSkills = [
   "JavaScript",
   "React",
@@ -128,7 +132,30 @@ export function saveCustomSkills(skills) {
   window.localStorage.setItem(STORAGE_KEYS.skills, JSON.stringify(skills));
 }
 
-export function getProjects() {
+// Fetch projects from backend API
+export async function fetchProjectsFromAPI() {
+  try {
+    const response = await fetch(`${API_BASE_URL}/projects?published=true`);
+    if (!response.ok) {
+      console.error('Failed to fetch projects from API');
+      return [];
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return [];
+  }
+}
+
+// Get all projects: existing hardcoded + new from API
+export async function getProjects() {
+  const apiProjects = await fetchProjectsFromAPI();
+  return [...defaultProjects, ...apiProjects];
+}
+
+// Sync version for components that need immediate data
+export function getProjectsSync() {
   return [...defaultProjects, ...getCustomProjects()];
 }
 

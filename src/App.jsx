@@ -8,7 +8,7 @@ import Work from "./pages/Work";
 import About from "./pages/About";
 import Project from "./pages/Project";
 import Contact from "./pages/Contact";
-import Admin from "./pages/Admin";
+import AdminNew from "./pages/AdminNew";
 import DynamicProject from "./pages/DynamicProject";
 
 import Personify from "./pages/projects/Personify";
@@ -35,7 +35,7 @@ export default function App() {
             <Route path="/about" element={<About />} />
             <Route path="/work/project-1" element={<Project />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/admin" element={<Admin />} />
+            <Route path="/admin" element={<AdminNew />} />
 
             <Route path="/work/personify" element={<Personify />} />
             <Route path="/work/year-wrap" element={<YearWrap />} />

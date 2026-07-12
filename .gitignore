@@ -23,5 +23,11 @@ dist-ssr
 *.sln
 *.sw?
 
-# Dependency directories
-public/videos/
+# Environment
+.env
+.env.local
+.env.production
+
+# Server
+server/uploads/
+server/.env
